@@ -1,8 +1,6 @@
-package net.rmnad.ftbrankssync;
+package net.rmnad.minecraft.ftbrankssync;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
@@ -15,12 +13,7 @@ public class FTBRanksSync {
 
     public FTBRanksSync() {
         Config.register(ModLoadingContext.get());
-        MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
         LOGGER.info("Hello from FTB Ranks Sync!");
-    }
-
-    @SubscribeEvent
-    public void onServerStarted(ServerStartedEvent event) {
-        LOGGER.debug(String.format("Sync time is %d\n", Config.COMMON.SYNC_TIMER.get()));
     }
 }
