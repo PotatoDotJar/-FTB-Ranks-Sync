@@ -1,13 +1,7 @@
 package net.rmnad.minecraft.ftbrankssync;
 
-import dev.ftb.mods.ftbranks.api.FTBRanksAPI;
-import dev.ftb.mods.ftbranks.api.Rank;
-import dev.ftb.mods.ftbranks.api.RankManager;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.server.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.List;
 
 public class EventHandler {
     @SubscribeEvent
@@ -35,11 +29,7 @@ public class EventHandler {
         FTBRanksSync.LOGGER.info("Server Started");
         FTBRanksSync.LOGGER.debug(String.format("Sync time is %d\n", Config.COMMON.SYNC_TIMER.get()));
 
-        RankManager manager = FTBRanksAPI.INSTANCE.getManager();
 
-        if(manager != null) {
-            List<Rank> ranks = manager.getAllRanks();
-        }
     }
 
 
