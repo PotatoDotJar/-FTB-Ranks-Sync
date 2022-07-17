@@ -1,4 +1,4 @@
-package net.rmnad.ftbrankssync;
+package net.rmnad.minecraft.ftbrankssync;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
