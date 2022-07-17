@@ -37,6 +37,9 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             args += ["nogui"]
             mods {
                 "${mod_name}" {
@@ -53,7 +56,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven { url = 'https://maven.rmnad.net/releases' }
     maven { url = "https://maven.saps.dev/minecraft" }
-    maven { url "https://maven.architectury.dev/" }
+    maven { url = "https://maven.architectury.dev/" }
 }
 
 configurations {
@@ -74,8 +77,11 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     //shadow "net.rmnad.minecraft.forge:whitelistsynclib:${whitelistsynclib_version}"
 
-    compileOnly "dev.ftb.mods:ftb-ranks-forge:${ftb_ranks}"
-    runtimeOnly "dev.ftb.mods:ftb-ranks-forge:${ftb_ranks}"
+    compileOnly fg.deobf("dev.ftb.mods:ftb-ranks-forge:${ftb_ranks}") { transitive = false }
+    runtimeOnly fg.deobf("dev.ftb.mods:ftb-ranks-forge:${ftb_ranks}") { transitive = false }
+
+    runtimeOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+    runtimeOnly fg.deobf("dev.ftb.mods:ftb-library-forge:${ftb_library}") { transitive = false }
 }
 
 // START: SHADING DEPENDENCIES
